@@ -1,0 +1,40 @@
+.App{
+  max-width: 1280px;
+  margin: 10rem auto;
+}
+
+#welcome{
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+  height: 46px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 42px;
+  padding: 3rem;
+
+  color: #C83A3A;
+}
+
+#buttons1{
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  padding: 2rem;
+  font-family: Roboto Condensed;
+  margin-left: 5rem;
+  margin-right: 5rem;
+
+}
+
+#navbar{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  color:#C83A3A;
+}
+
+

@@ -1,0 +1,4 @@
+.ListaDeCientes{
+    display: flex;
+    flex-wrap: wrap;
+}
