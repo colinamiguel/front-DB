@@ -77,7 +77,19 @@ const resolvers = {
             )
         },
 
-        
+        async updateClienteNombre(root, args, { models }) {
+            return await models.cliente.update({
+                id: args.idUpdate}, {where: {nombre: args.nombreUpdate}}
+                
+            )
+        },
+
+        async updateClienteApellido(root, args, { models }) {
+            return await models.cliente.update({
+                apellido: args.apellidoUpdate}, {where: {cedulaCli: args.cedulaCliUpdate}}
+                
+            )
+        },
 
         async updateTipos(root, args, { models }){
             return await models.tipo.findAll()

@@ -97,6 +97,10 @@ type Query{
     updateTipos: [Tipo],
     updateTipo(id: Int!): Tipo
 
+
+    updateClienteApellido(apellidoUpdate: String!, cedulaCliUpdate: Int!): Cliente
+
+    updateClienteNombre(nombreUpdate: String!, idUpdate: Int!): Cliente
 }
 
 type Mutation{
@@ -115,6 +119,7 @@ type Mutation{
     updateReserva(fechaEn: Int!, fechaSa: Int!, active: Boolean!): Reserva!
 
     updateCliente2222(nombre: String!): Cliente!
+
     
 }
 `

@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { gql, useLazyQuery, useMutation } from '@apollo/client';
+import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import Navbar from '../Navbar/ClientNavbar';
 import ClientesList from '../../pages/ClientesList';
 
@@ -96,6 +96,23 @@ const CREATE_CLIENTE = gql`
             active
         }
     }
+`;
+
+const UPDATE_ID = gql`
+    query UpdateClienteId($nombreUpdate: String!, $idUpdate: Int!){
+        updateClienteId(nombreUpdate: $nombreUpdate, idUpdate: $idUpdate
+        ){
+            nombre
+        }
+    }
+`;
+
+const UPDATE_APELLIDO = gql`
+    query UpdateClientApellido($apellidoUpdate: String!, $cedulaCliUpdate: Int!){
+        updateClienteApellido(apellidoUpdate: $apellidoUpdate, cedulaCliUpdate: $cedulaCliUpdate){
+            nombre
+        }
+    }
 `
 
 
@@ -107,10 +124,20 @@ export default function Clients() {
        getClienteById();
    }
 
+
+   
     const [id, setId] = useState("");
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
     const [cedulaCli, setCedulaCli] = useState("");
+   
+   
+   
+    const [idUpdate, setIdUpdate] = useState("");
+    const [nombreUpdate, setNombreUpdate] = useState("");
+
+    const [apellidoUpdate, setApellidoUpdate] = useState("");
+    const [cedulaCliUpdate, setCedulaCliUpdate] = useState("");
 
     
     const [idMutation, setIdMutation] = useState("");
@@ -127,10 +154,22 @@ export default function Clients() {
     const [estaLeal, setEstaLeal] = useState("");
 
 
+    
+
     const [createClienteNuevo, {data, loading, error}] = useMutation(CREATE_CLIENTE, 
         {variables: 
             {idMutation, nombreMutation, apellidoMutation, cedulaCliMutation, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser,active}
-        });
+        }
+    );
+
+    const [updateId, {dataUpdateId, loadingUpdateId, errorUpdateId}] = useLazyQuery(UPDATE_ID, 
+        {variables: 
+            {idUpdate, nombreUpdate}
+        }
+    );
+
+    const [updateApellido, {dataUpdateApellido, loadingUpdateApellido, errorUpdateApellido}] = useLazyQuery(UPDATE_APELLIDO,
+        {variables: apellidoUpdate, cedulaCliUpdate})
 
 
 
@@ -262,8 +301,20 @@ export default function Clients() {
         <h4>Modificar cliente</h4>
 
         <div>
-            <input type = 'number' placeholder = 'Cédula' value = {cedulaCliMutation} onChange={(event) => setCedulaCliMutation(event.target.valueAsNumber)}/>
+            <input type = 'number' value = {idUpdate} onChange={(event) => setIdUpdate(event.target.valueAsNumber)}></input>
+            <input type='text' value={nombreUpdate} onChange={(event) => setNombreUpdate(event.target.value)}></input>
+            <button type='button' onClick={()=>updateId()}>Enviar</button>
         </div>
+
+
+
+
+
+
+
+
+        
+
 
     </section>
   )
