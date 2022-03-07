@@ -21,14 +21,15 @@ export default function ClientesList(){
 
   return (
     <div className='ListaDeCientes'>
+        <ul>
         {data.getClientes.map(cliente => {
             return (
-            <ul>
-                <li><div>Nombre: {cliente.nombre}, ID: {cliente.id}, Correo: {cliente.correo}, Sexo: {cliente.sexo} </div></li>   
-            </ul>
+            
+                <li key={cliente.id}><div>  Nombre: {cliente.nombre}, ID: {cliente.id}, Correo: {cliente.correo}, Sexo: {cliente.sexo} </div></li>   
+            
                 
         )
-        })}
+        })}</ul>
     </div>
   )
   

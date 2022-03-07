@@ -4,6 +4,7 @@ import Navbar from '../Navbar/ClientNavbar';
 
 
 
+
 const GET_HOTEL = gql`
     query GetHotel($id: Int!){
       getEstablecimiento(id: $id){
@@ -103,50 +104,64 @@ export default function Hoteles() {
         <div>
             Hoteles
         </div>
-        <input id="hotelInput" type="number" value={id} onChange={(event) => setId(event.target.valueAsNumber)}></input>
-        <button onClick={() => getHotelById()}>Search</button>
 
-        <input id="hotelInput" value={nombre} onChange={(event) => setNombre(event.target.value)}></input>
-        <button onClick={() => getEstablecimientoByName()}>Search by Name</button>
+        <div>
 
-        <input id="hotelInput" type="number" value={califica} onChange={(event) => setCalifica(event.target.valueAsNumber)}></input>
-        <button onClick={() => getEstablecimientoByCalifica()}>Search by calificación</button>
+            <h2>Busquedas</h2>
+        
+            <input id="hotelInput" type="number" value={id} onChange={(event) => setId(event.target.valueAsNumber)}></input>
+            <button onClick={() => getHotelById()}>Search</button>
 
-        <button onClick={() => getEstablecimientos()}>Get All</button>
+            <input id="hotelInput" value={nombre} onChange={(event) => setNombre(event.target.value)}></input>
+            <button onClick={() => getEstablecimientoByName()}>Search by Name</button>
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    Nombre
-                </label>
+            <input id="hotelInput" type="number" value={califica} onChange={(event) => setCalifica(event.target.valueAsNumber)}></input>
+            <button onClick={() => getEstablecimientoByCalifica()}>Search by calificación</button>
+
+            <button onClick={() => getEstablecimientos()}>Get All</button>
+
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Nombre
+                    </label>
+            </div>
+
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Pais
+                    </label>
+            </div>
+
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Ciudad
+                    </label>
+            </div>
+
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Calle
+                    </label>
+            </div>
+
+            <div className="form-check">
+                <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
+                    <label className="form-check-label" htmlFor="flexCheckDefault">
+                        Comentario
+                    </label>
+            </div>
         </div>
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    Pais
-                </label>
-        </div>
+        <hr></hr>
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    Ciudad
-                </label>
-        </div>
+        <div>
+            <h2>Mutaciones</h2>
+            
 
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    Calle
-                </label>
-        </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"></input>
-                <label class="form-check-label" for="flexCheckDefault">
-                    Comentario
-                </label>
         </div>
 
     </section>

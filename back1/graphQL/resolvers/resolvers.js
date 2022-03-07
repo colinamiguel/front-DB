@@ -1,3 +1,7 @@
+import Sequelize from 'sequelize';
+
+
+
 const resolvers = {
 
     Query: {
@@ -17,7 +21,7 @@ const resolvers = {
         },
 
         async getClienteByName(root, args, { models }) {
-            return await models.cliente.findOne({where: {nombre: args.nombre}
+            return await models.cliente.findAll({where: {nombre: args.nombre}
             })
         },
 
@@ -26,9 +30,8 @@ const resolvers = {
         },
 
         async getClienteByApellido(root, args, { models }){
-            return await models.cliente.findOne({where: {apellido: args.apellido}})
+            return await models.cliente.findAll({where: {apellido: args.apellido}})
         },
-
 
         async getTipos(root, args, { models }){
             return await models.tipo.findAll()
@@ -43,10 +46,11 @@ const resolvers = {
             return await models.establecimiento.findByPk(args.id)
         },
         async getEstablecimientoByNombre(root, args, { models }) {
-            return await models.establecimiento.findOne({where: {nombre :args.nombre}})
+            return await models.establecimiento.findAll({where: {nombre :args.nombre}})
         },
         async getEstablecimientoByCalifica(root, args, { models }) {
-            return await models.establecimiento.findAll({where: {califica :args.califica}}).then((data)=> {})
+            return await models.establecimiento.findAll({where: {califica :args.califica}})
+            
         },
         async getReservas(root, args, { models }){
             return await models.reserva.findAll()
@@ -66,9 +70,15 @@ const resolvers = {
         async updateClientes(root, args, { models }){
             return await models.cliente.findAll()
         },
-        async updateCliente(root, args, { models }) {
-            return await models.cliente.findByPk(args.id)
+        async updateCliente1111(root, args, { models }) {
+            return await models.cliente.update({
+                id: 3}, {where: {id: args.id}}
+                
+            )
         },
+
+        
+
         async updateTipos(root, args, { models }){
             return await models.tipo.findAll()
         },
@@ -119,6 +129,11 @@ const resolvers = {
         async updateCliente(root, { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active }, { models }){
             return await models.cliente.update( { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active })
         },
+
+        async updateCliente2222(root, args, { models }){
+            return await models.cliente.update({nombre: "Kevin"}, {where: {nombre: args.nombre}})
+        },
+
         async updateTipo(root, { precio, descrip, numBan, numCam, capac, comodida, FK_Hab, active }, { models }){
             return await models.tipo.update( { precio, descrip, numBan, numCam, capac, comodida, FK_Hab, active })
         },

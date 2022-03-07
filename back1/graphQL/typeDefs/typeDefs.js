@@ -67,14 +67,14 @@ type Query{
 
     getClientes: [Cliente!],
     getCliente(id: Int!): Cliente,
-    getClienteByName(nombre: String!): Cliente,
-    getClienteByApellido(apellido: String!): Cliente,
+    getClienteByName(nombre: String!): [Cliente],
+    getClienteByApellido(apellido: String!): [Cliente],
     getClienteByCedula(cedulaCli: Int!): Cliente,
 
     getEstablecimientos: [Establecimiento],
-    getEstablecimiento(id: Int!): Establecimiento
-    getEstablecimientoByCalifica(califica: Int!): Establecimiento
-    getEstablecimientoByNombre(nombre: String!): Establecimiento
+    getEstablecimiento(id: Int!): Establecimiento,
+    getEstablecimientoByCalifica(califica: Int!): [Establecimiento],
+    getEstablecimientoByNombre(nombre: String!): [Establecimiento]
 
     getReservas: [Reserva],
     getReserva(id: Int!): Reserva
@@ -86,7 +86,7 @@ type Query{
     updateHabitacion(id: Int!): Habitacion
 
     updateClientes: [Cliente],
-    updateCliente(id: Int!): Cliente
+    updateCliente1111(id: Int!): Cliente
 
     updateEstablecimientos: [Establecimiento],
     updateEstablecimiento(id: Int!): Establecimiento
@@ -113,6 +113,8 @@ type Mutation{
     updateTipo(precio: Int!, descrip: String!, numBan: Int!, numCam: Int!, capac: Int!, comodida: String!, FK_Hab: Int!, active: Boolean!): Tipo!
     updateEstablecimiento(nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
     updateReserva(fechaEn: Int!, fechaSa: Int!, active: Boolean!): Reserva!
+
+    updateCliente2222(nombre: String!): Cliente!
     
 }
 `
