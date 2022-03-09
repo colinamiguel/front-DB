@@ -75,6 +75,9 @@ type Query{
     getEstablecimiento(id: Int!): Establecimiento,
     getEstablecimientoByCalifica(califica: Int!): [Establecimiento],
     getEstablecimientoByNombre(nombre: String!): [Establecimiento]
+    getEstablecimientosByPais(pais: String!): [Establecimiento],
+    getEstablecimientosByCiudad(ciudad: String!): [Establecimiento],
+    getEstablecimientosByTipo(tipo: String!): [Establecimiento],
 
     getReservas: [Reserva],
     getReserva(id: Int!): Reserva
@@ -100,6 +103,9 @@ type Query{
 
     updateClienteNombre(nombreUpdate: String!, idUpdate: Int!): Cliente
     updateClienteCorreo(cedulaCliUpdate: Int!, correoUpdate: String!): Cliente
+    
+    
+    updateHabitacionDispon(disponUpdate: Int!, idUpdate: Int!): Habitacion
 }
 
 type Mutation{
@@ -107,9 +113,10 @@ type Mutation{
     createHabitacion(dispon: Int!, numHab: Int!, FK_Reser: Int!, active: Boolean!): Habitacion!
     createCliente(nombre: String!, apellido: String!, cedulaCli: Int!, nacionalidad: String!, fechaNac: Int!, sexo: String!, infoBanca: String!, estaLeal: String!, correo: String!, fk_Reser: Int!, active: Boolean!): Cliente!
     createTipo(precio: Int!, descrip: String!, numBan: Int!, numCam: Int!, capac: Int!, comodida: String!, FK_Hab: Int!, active: Boolean!): Tipo!
-    createEstablecimiento(nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
+    createEstablecimiento(id: Int!, nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
     createReserva(fechaEn: Int!, fechaSa: Int!, active: Boolean!): Reserva!
     
+    createEstablecimiento1(nombre: String!, tipo: String!, instalaci: String!, pais: String!, ciudad: String!, calle: String!, califica: Int!, comen: String!, FK_Hab: Int!, active: Boolean!): Establecimiento!
 
     updateHabitacion(dispon: Int!, numHab: Int!, FK_Reser: Int!, active: Boolean!): Habitacion!
     updateCliente(nombre: String!, apellido: String!, cedulaCli: Int!, nacionalidad: String!, fechaNac: Int!, sexo: String!, infoBanca: String!, estaLeal: String!, correo: String!, fk_Reser: Int!, active: Boolean!): Cliente!

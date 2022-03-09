@@ -68,7 +68,7 @@ const CREATE_CLIENTE = gql`
     mutation CreateCliente($nombreMutation: String!, $apellidoMutation: String!, $cedulaCliMutation: Int!,
                             $nacionalidad: String!, $fechaNac: Int!, $sexo: String!,
                             $infoBanca: String!, $estaLeal: String!, $correo: String!,
-                            $fk_Reser: Int!, $active: Boolean!){
+                            $fk_Reser: Int!){
         createCliente(
 
             nombre: $nombreMutation
@@ -81,7 +81,7 @@ const CREATE_CLIENTE = gql`
             estaLeal: $estaLeal
             correo: $correo
             fk_Reser: $fk_Reser
-            active: $active
+            active: true
         ){
             nombre
             apellido
@@ -100,8 +100,8 @@ const CREATE_CLIENTE = gql`
 
 const UPDATE_ID = gql`
     query UpdateClienteNombre($nombreUpdate: String!, $idUpdate: Int!){
-        updateClienteNombre(nombreUpdate: $nombreUpdate, idUpdate: $idUpdate
-        ){
+        updateClienteNombre(nombreUpdate: $nombreUpdate, idUpdate: $idUpdate)
+        {
             nombre
         }
     }
@@ -115,9 +115,6 @@ const UPDATE_CORREO = gql`
         }
     }
 `;
-
-
-
 
 
 export default function Clients() {
@@ -174,8 +171,6 @@ export default function Clients() {
             {cedulaCliUpdate, correoUpdate}
         }
     );
-
-
 
     const [getClienteById, {loading: clientSearchLoading, error: clientSearchError, data: clientSearchData, called: clientSearchCalled}] = useLazyQuery(GET_CLIENTE_BY_ID,
         { variables: {id}});
@@ -294,12 +289,7 @@ export default function Clients() {
         
         <input type = 'boolean' placeholder = 'Active' value = {active} onChange={(event) => setActive(event.target.value)}/> 
 
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Active
-                </label>
-        </div>
+
         <button onClick={() => createClienteNuevo()}>Enviar</button>
 
         <h4>Modificar cliente</h4>
@@ -310,10 +300,13 @@ export default function Clients() {
             <button type='button' onClick={()=>updateId()}>Enviar</button>
         </div>
 
-        
-        <input type='number' placeholder='Cédula' value = {cedulaCliUpdate} onChange={(event) => setCedulaCliUpdate(event.target.valueAsNumber)}></input>
-        <input type='text' placeholder = 'Correo' value = {correoUpdate} onChange={(event) => setCorreoUpdate(event.target.value)}></input>
-        <button type='button' onClick={() => updateCorreo()}>Enviar</button>
+        <div>
+            <input type='number' placeholder='Cédula' value = {cedulaCliUpdate} onChange={(event) => setCedulaCliUpdate(event.target.valueAsNumber)}></input>
+            <input type='text' placeholder = 'Correo' value = {correoUpdate} onChange={(event) => setCorreoUpdate(event.target.value)}></input>
+            <button type='button' onClick={() => updateCorreo()}>Enviar</button>
+        </div>
+
+
 
 
 

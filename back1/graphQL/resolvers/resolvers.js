@@ -42,11 +42,23 @@ const resolvers = {
         async getEstablecimientos(root, args, { models }){
             return await models.establecimiento.findAll()
         },
+
+        async getEstablecimientosByTipo(root, args, { models }){
+            return await models.establecimiento.findAll({where: {tipo: args.tipo}})
+        },
         async getEstablecimiento(root, args, { models }) {
             return await models.establecimiento.findByPk(args.id)
         },
         async getEstablecimientoByNombre(root, args, { models }) {
             return await models.establecimiento.findAll({where: {nombre :args.nombre}})
+        },
+
+        async getEstablecimientosByCiudad(root, args, { models }) {
+            return await models.establecimiento.findAll({where: {ciudad :args.ciudad}})
+        },
+
+        async getEstablecimientosByPais(root, args, { models }) {
+            return await models.establecimiento.findAll({where: {pais :args.pais}})
         },
         async getEstablecimientoByCalifica(root, args, { models }) {
             return await models.establecimiento.findAll({where: {califica :args.califica}})
@@ -72,8 +84,7 @@ const resolvers = {
         },
         async updateCliente1111(root, args, { models }) {
             return await models.cliente.update({
-                id: 3}, {where: {id: args.id}}
-                
+                id: 3}, {where: {id: args.id}}   
             )
         },
 
@@ -91,7 +102,12 @@ const resolvers = {
             )
         },
 
-        
+        async updateHabitacionDispon(root, args, { models }) {
+            return await models.habitacion.update({
+                dispon: args.disponUpdate}, {where: {id: args.idUpdate}}
+                
+            )
+        },
 
         async updateTipos(root, args, { models }){
             return await models.tipo.findAll()
@@ -119,11 +135,11 @@ const resolvers = {
 
         //create
 
-        async createHabitacion(root, { dispon, numHab, fk_Reser, active }, { models }){
-            return await models.habitacion.create( { dispon, numHab, fk_Reser, active  })
+        async createHabitacion(root, { dispon, numHab, FK_Reser, active }, { models }){
+            return await models.habitacion.create( { dispon, numHab, FK_Reser, active  })
         },
         async createCliente(root, { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active }, { models }){
-            return await models.cliente.create( { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active })
+            return await models.cliente.create( { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active})
         },
 
         // active = true

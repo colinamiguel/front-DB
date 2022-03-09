@@ -14,7 +14,7 @@ module.exports = (Sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      FK_Reser_Hab: {
+      FK_Reser: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
