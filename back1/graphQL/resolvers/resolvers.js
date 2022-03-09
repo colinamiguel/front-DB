@@ -84,6 +84,13 @@ const resolvers = {
             )
         },
 
+        async updateClienteCorreo(root, args, { models }) {
+            return await models.cliente.update({
+                correo: args.correoUpdate}, {where: {cedulaCli: args.cedulaCliUpdate}}
+                
+            )
+        },
+
         
 
         async updateTipos(root, args, { models }){

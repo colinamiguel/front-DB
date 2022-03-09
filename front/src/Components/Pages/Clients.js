@@ -107,6 +107,15 @@ const UPDATE_ID = gql`
     }
 `;
 
+const UPDATE_CORREO = gql`
+    query UpdateClienteCorreo($cedulaCliUpdate: Int!, $correoUpdate: String!){
+        updateClienteCorreo(cedulaCliUpdate: $cedulaCliUpdate, correoUpdate: $correoUpdate
+        ){
+            nombre
+        }
+    }
+`;
+
 
 
 
@@ -115,7 +124,6 @@ export default function Clients() {
 
    function getAttributes(){
        const attributes = '';
-       
        getClienteById();
    }
 
@@ -145,7 +153,8 @@ export default function Clients() {
     const [nacionalidad, setNacionalidad] = useState("");
     const [estaLeal, setEstaLeal] = useState("");
 
-
+   const [correoUpdate, setCorreoUpdate] = useState("");
+   const [cedulaCliUpdate, setCedulaCliUpdate] = useState("");
     
 
     const [createClienteNuevo, {data, loading, error}] = useMutation(CREATE_CLIENTE, 
@@ -157,6 +166,12 @@ export default function Clients() {
     const [updateId, {dataNew, loadingNew, errorNew}] = useLazyQuery(UPDATE_ID, 
         {variables: 
             {idUpdate, nombreUpdate}
+        }
+    );
+
+    const [updateCorreo, {dataUpdatedCorreo, loadingUpdatedCorreo, errorUpdatedCorreo}] = useLazyQuery(UPDATE_CORREO, 
+        {variables: 
+            {cedulaCliUpdate, correoUpdate}
         }
     );
 
@@ -294,6 +309,11 @@ export default function Clients() {
             <input type='text' value={nombreUpdate} onChange={(event) => setNombreUpdate(event.target.value)}></input>
             <button type='button' onClick={()=>updateId()}>Enviar</button>
         </div>
+
+        
+        <input type='number' placeholder='Cédula' value = {cedulaCliUpdate} onChange={(event) => setCedulaCliUpdate(event.target.valueAsNumber)}></input>
+        <input type='text' placeholder = 'Correo' value = {correoUpdate} onChange={(event) => setCorreoUpdate(event.target.value)}></input>
+        <button type='button' onClick={() => updateCorreo()}>Enviar</button>
 
 
 

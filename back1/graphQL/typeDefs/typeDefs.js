@@ -99,6 +99,7 @@ type Query{
 
 
     updateClienteNombre(nombreUpdate: String!, idUpdate: Int!): Cliente
+    updateClienteCorreo(cedulaCliUpdate: Int!, correoUpdate: String!): Cliente
 }
 
 type Mutation{
