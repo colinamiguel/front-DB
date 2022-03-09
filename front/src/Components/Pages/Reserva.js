@@ -1,17 +1,17 @@
 import { useLazyQuery, gql } from '@apollo/client';
 import React, { useState } from 'react';
-import Navbar from '../Navbar/ClientNavbar'
+import Navbar from '../Navbar/ClientNavbar';
 
 
 const GET_RESERVA_BY_ID = gql`
     query GetReservaById($id: Int!){
-        getReseva(id: $id){
+        getReserva(id: $id){
             fechaEn
             fechaSa
             active
         }
     }
-`
+`;
 
 export default function Reserva() {
 

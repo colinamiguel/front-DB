@@ -99,21 +99,16 @@ const CREATE_CLIENTE = gql`
 `;
 
 const UPDATE_ID = gql`
-    query UpdateClienteId($nombreUpdate: String!, $idUpdate: Int!){
-        updateClienteId(nombreUpdate: $nombreUpdate, idUpdate: $idUpdate
+    query UpdateClienteNombre($nombreUpdate: String!, $idUpdate: Int!){
+        updateClienteNombre(nombreUpdate: $nombreUpdate, idUpdate: $idUpdate
         ){
             nombre
         }
     }
 `;
 
-const UPDATE_APELLIDO = gql`
-    query UpdateClientApellido($apellidoUpdate: String!, $cedulaCliUpdate: Int!){
-        updateClienteApellido(apellidoUpdate: $apellidoUpdate, cedulaCliUpdate: $cedulaCliUpdate){
-            nombre
-        }
-    }
-`
+
+
 
 
 export default function Clients() {
@@ -135,9 +130,6 @@ export default function Clients() {
    
     const [idUpdate, setIdUpdate] = useState("");
     const [nombreUpdate, setNombreUpdate] = useState("");
-
-    const [apellidoUpdate, setApellidoUpdate] = useState("");
-    const [cedulaCliUpdate, setCedulaCliUpdate] = useState("");
 
     
     const [idMutation, setIdMutation] = useState("");
@@ -162,14 +154,11 @@ export default function Clients() {
         }
     );
 
-    const [updateId, {dataUpdateId, loadingUpdateId, errorUpdateId}] = useLazyQuery(UPDATE_ID, 
+    const [updateId, {dataNew, loadingNew, errorNew}] = useLazyQuery(UPDATE_ID, 
         {variables: 
             {idUpdate, nombreUpdate}
         }
     );
-
-    const [updateApellido, {dataUpdateApellido, loadingUpdateApellido, errorUpdateApellido}] = useLazyQuery(UPDATE_APELLIDO,
-        {variables: apellidoUpdate, cedulaCliUpdate})
 
 
 

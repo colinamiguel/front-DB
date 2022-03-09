@@ -98,8 +98,6 @@ type Query{
     updateTipo(id: Int!): Tipo
 
 
-    updateClienteApellido(apellidoUpdate: String!, cedulaCliUpdate: Int!): Cliente
-
     updateClienteNombre(nombreUpdate: String!, idUpdate: Int!): Cliente
 }
 

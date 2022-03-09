@@ -84,12 +84,7 @@ const resolvers = {
             )
         },
 
-        async updateClienteApellido(root, args, { models }) {
-            return await models.cliente.update({
-                apellido: args.apellidoUpdate}, {where: {cedulaCli: args.cedulaCliUpdate}}
-                
-            )
-        },
+        
 
         async updateTipos(root, args, { models }){
             return await models.tipo.findAll()
@@ -123,6 +118,8 @@ const resolvers = {
         async createCliente(root, { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active }, { models }){
             return await models.cliente.create( { nombre, apellido, cedulaCli, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser, active })
         },
+
+        // active = true
         async createTipo(root, { precio, descrip, numBan, numCam, capac, comodida, FK_Hab, active }, { models }){
             return await models.tipo.create( { precio, descrip, numBan, numCam, capac, comodida, FK_Hab, active })
         },
