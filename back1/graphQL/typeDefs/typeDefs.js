@@ -106,6 +106,8 @@ type Query{
     
     
     updateHabitacionDispon(disponUpdate: Int!, idUpdate: Int!): Habitacion
+
+    updateEstablecimientoCalifica(nombreUpdateH: String!, calificaUpdate: Int!): Establecimiento
 }
 
 type Mutation{

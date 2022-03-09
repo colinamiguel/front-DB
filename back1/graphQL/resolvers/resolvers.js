@@ -109,6 +109,11 @@ const resolvers = {
             )
         },
 
+        async updateEstablecimientoCalifica(root, args, {models}){
+            return await models.establecimiento.update({
+                califica: args.calificaUpdate}, {where: {nombre: args.nombreUpdateH}})
+        },
+
         async updateTipos(root, args, { models }){
             return await models.tipo.findAll()
         },

@@ -115,6 +115,8 @@ const GET_ESTABLECIMIENTOS_BY_CIUDAD = gql`
     }
 `;
 
+//Mutations
+
 const CREATE_ESTABLECIMIENTO = gql`
     mutation CreateEstablecimiento($idMutation: Int!, $nombreMutation: String!, $tipoMutation: String!, $instalaciMutation: String!, $paisMutation: String!, $ciudadMutation: String!, 
                                    $calleMutation: String!, $calificaMutation: Int!, $comenMutation: String!, $FK_Hab: Int!){
@@ -146,6 +148,14 @@ const CREATE_ESTABLECIMIENTO = gql`
     }
 `;
 
+const UPDATE_CALIFICA = gql`
+    query UpdateCalifica($nombreUpdateH: String!, $calificaUpdate: Int!){
+        updateEstablecimientoCalifica(nombreUpdateH: $nombreUpdateH, calificaUpdate: $calificaUpdate){
+            califica
+        }
+    }
+`;
+
 export default function Hoteles() {
 
     const [id, setId] = useState("");
@@ -169,6 +179,8 @@ export default function Hoteles() {
     const [ciudadMutation, setCiudadMutation] = useState("");
     const [FK_Hab, setFKHab] = useState("");
 
+    const [nombreUpdateH, setNombreUpdateH] = useState("");
+    const [calificaUpdate, setCalificaUpdate] = useState("");
 
     const [getHotelById, {loading: hotelSearchLoading, error: hotelSearchError, data: hotelSearchData, called: hotelSearchCalled}] = useLazyQuery(GET_HOTEL,
         { variables: {id}});
@@ -191,14 +203,16 @@ export default function Hoteles() {
     const [getEstablecimientos, {loading: hotelSearchLoadingAll, error: hotelSearchErrorAll, data: hotelSearchDataAll, called: hotelSearchCalledAll}] = useLazyQuery(GET_All_ESTABLECIMIENTOS
         );
 
+
+
     const [createEstablecimiento, {loading: hotelCreateLoadingAll, error: hotelCreateErrorAll, data: hotelCreateDataAll, called: hotelCreateCalledAll}] = useMutation(CREATE_ESTABLECIMIENTO,{
         variables: {idMutation, calificaMutation, calleMutation, paisMutation, nombreMutation, instalaciMutation, tipoMutation, comenMutation, ciudadMutation, FK_Hab}
     });
+
+    const [updateCalificaEstablecimiento, {loading: hotelUpdateLoadingAll, error: hotelUpdateErrorAll, data: hotelUpdateDataAll, called: hotelUpdateCalledAll}] = useLazyQuery(UPDATE_CALIFICA,{
+        variables: {nombreUpdateH, calificaUpdate}
+    });
     
-
-    
-
-
 
   return (    
     <section>
@@ -272,18 +286,23 @@ export default function Hoteles() {
         <div>
             <h2>Mutaciones</h2>
                 <div>
-                <input id="hotelInput" placeholder = 'Nombre' value={nombreMutation} onChange={(e) => setNombreMutation(e.target.value)}></input>
-                <input id="hotelInput" placeholder='País' value={paisMutation} onChange={(e) => setPaisMutation(e.target.value)}></input>
-                <input id="hotelInput" placeholder='Tipo' value={tipoMutation} onChange={(e) => setTipoMuation(e.target.value)}></input>
-                <input id="hotelInput" placeholder='Instalaciones' value={instalaciMutation} onChange={(e) => setInstalaci(e.target.value)}></input>
-                <input id="hotelInput" placeholder='Ciudad' value={ciudadMutation} onChange={(e) => setCiudadMutation(e.target.value)}></input>
-                <input id="hotelInput" placeholder='Calle' value={calleMutation} onChange={(e) => setCalleMutation(e.target.value)}></input>
-                <input type='number' id="hotelInput" placeholder='Calificación' value={calificaMutation} onChange={(e) => setCalificaMutation(e.target.valueAsNumber)}></input>
-                <input id="hotelInput" placeholder='Comentario' value={comenMutation} onChange={(e) => setComenMutation(e.target.value)}></input>
-                <input type='number' id="hotelInput" placeholder='Id' value={idMutation} onChange={(e) => setIdMutation(e.target.valueAsNumber)}></input>
-                <input type = 'number' id="hotelInput" placeholder='FK Habitación' value={FK_Hab} onChange={(e) => setFKHab(e.target.valueAsNumber)}></input>
-                <button type='button' onClick={() => createEstablecimiento()}>Create Establecimiento</button>
+                    <input id="hotelInput" placeholder = 'Nombre' value={nombreMutation} onChange={(e) => setNombreMutation(e.target.value)}></input>
+                    <input id="hotelInput" placeholder='País' value={paisMutation} onChange={(e) => setPaisMutation(e.target.value)}></input>
+                    <input id="hotelInput" placeholder='Tipo' value={tipoMutation} onChange={(e) => setTipoMuation(e.target.value)}></input>
+                    <input id="hotelInput" placeholder='Instalaciones' value={instalaciMutation} onChange={(e) => setInstalaci(e.target.value)}></input>
+                    <input id="hotelInput" placeholder='Ciudad' value={ciudadMutation} onChange={(e) => setCiudadMutation(e.target.value)}></input>
+                    <input id="hotelInput" placeholder='Calle' value={calleMutation} onChange={(e) => setCalleMutation(e.target.value)}></input>
+                    <input type='number' id="hotelInput" placeholder='Calificación' value={calificaMutation} onChange={(e) => setCalificaMutation(e.target.valueAsNumber)}></input>
+                    <input id="hotelInput" placeholder='Comentario' value={comenMutation} onChange={(e) => setComenMutation(e.target.value)}></input>
+                    <input type='number' id="hotelInput" placeholder='Id' value={idMutation} onChange={(e) => setIdMutation(e.target.valueAsNumber)}></input>
+                    <input type = 'number' id="hotelInput" placeholder='FK Habitación' value={FK_Hab} onChange={(e) => setFKHab(e.target.valueAsNumber)}></input>
+                    <button type='button' onClick={() => createEstablecimiento()}>Create Establecimiento</button>
+                </div>
 
+                <div>
+                    <input type='number' id="hotelInput" placeholder = 'Calificación' value={calificaUpdate} onChange={(e) => setCalificaUpdate(e.target.valueAsNumber)}></input>
+                    <input id="hotelInput" placeholder = 'Nombre' value={nombreUpdateH} onChange={(e) => setNombreUpdateH(e.target.value)}></input>
+                    <button type='button' onClick={() => updateCalificaEstablecimiento()}>Actualizar calificación</button>
                 </div>
 
         </div>
