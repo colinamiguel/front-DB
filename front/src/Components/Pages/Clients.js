@@ -2,6 +2,8 @@ import React , {useState} from 'react';
 import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import Navbar from '../Navbar/ClientNavbar';
 import ClientesList from '../../pages/ClientesList';
+import { useClientes } from '../../Components/BusquedaId';
+import BusquedaId from '../BusquedaId';
 
 //         Queries
 
@@ -120,7 +122,6 @@ const UPDATE_CORREO = gql`
 export default function Clients() {
 
    function getAttributes(){
-       const attributes = '';
        getClienteById();
    }
 
@@ -152,9 +153,8 @@ export default function Clients() {
 
    const [correoUpdate, setCorreoUpdate] = useState("");
    const [cedulaCliUpdate, setCedulaCliUpdate] = useState("");
-    
 
-    const [createClienteNuevo, {data, loading, error}] = useMutation(CREATE_CLIENTE, 
+    const [createClienteNuevo, {data: a, loading: b, error: c}] = useMutation(CREATE_CLIENTE, 
         {variables: 
             {idMutation, nombreMutation, apellidoMutation, cedulaCliMutation, nacionalidad, fechaNac, sexo, infoBanca, estaLeal, correo,fk_Reser,active}
         }
@@ -186,8 +186,7 @@ export default function Clients() {
     const [getClienteByCedula, {loading: clientSearchLoadingCedula, error: clientSearchErrorCedula, data: clientSearchDataCedula, called: clientSearchCalledCedula}] = useLazyQuery(GET_CLIENTE_BY_CEDULA,
         { variables: {cedulaCli}});
     
-
-
+ 
   return (    
     <section id='clientesSearch'>
 
@@ -214,55 +213,6 @@ export default function Clients() {
             <input className="form-check-input" type="checkbox" value="nombre" id="flexCheckDefault"></input>
                 <label className="form-check-label" htmlFor="flexCheckDefault">
                     Nombre
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="apellido" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Apellido
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="cedulaCli" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Cédula
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="fechaNac" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Fecha de nacimiento
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="sexo" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Sexo
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="infoBanca" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Información bancaria
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="estaLeal" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Estado de lealtad
-                </label>
-        </div>
-
-        <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="correo" id="flexCheckDefault"></input>
-                <label className="form-check-label" htmlFor="flexCheckDefault">
-                    Correo
                 </label>
         </div>
 
@@ -305,17 +255,16 @@ export default function Clients() {
             <input type='text' placeholder = 'Correo' value = {correoUpdate} onChange={(event) => setCorreoUpdate(event.target.value)}></input>
             <button type='button' onClick={() => updateCorreo()}>Enviar</button>
         </div>
+    )
+
+    
 
 
 
 
+    
 
 
-
-
-
-
-        
 
 
     </section>
